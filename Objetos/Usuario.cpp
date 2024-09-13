@@ -1,12 +1,7 @@
-#include "MaterialBibliografico.cpp"
 #include <iostream>
-using namespace std;
+#include "Usuario.h"
 
-class Usuario{
-    public:
-    string nombre, id;
-    MaterialBibliografico* materialesPrestados = new MaterialBibliografico[5];
-    void mostrarMaterial() {;}
-    void devolverMaterial() {;}
-    void mostrarMaterialesPrestados() {;}
-};
+Usuario::Usuario() {};
+void Usuario::mostrarMaterial() {};
+void Usuario::devolverMaterial() {};
+void Usuario::mostrarMaterialesPrestados() {};

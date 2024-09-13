@@ -1,8 +1,17 @@
-#include "MaterialBibliografico.cpp"
 #include <iostream>
+#include "Revista.h"
 
-class Revista: public MaterialBibliografico {
-    public:
-    string numeroPublicacion, mesPublicacion;
-    void mostrarInformacion() {cout << "Numero de publicacion: " + numeroPublicacion + "\nMes de publicacion: " + mesPublicacion << endl;}
-};
+Revista::Revista(std::string nombre, std::string isbn, std::string autor, std::string numeroPublicacion, std::string mesPublicacion)
+    :MaterialBibliografico(nombre, autor, isbn) {
+    this-> numeroPublicacion = numeroPublicacion;
+    this-> mesPublicacion = mesPublicacion;
+}
+
+void Revista::mostrarInformacion(){
+    MaterialBibliografico::mostrarInformacion();
+    std::cout << "Numero de publicacion: " + numeroPublicacion + "\nMes de publicacion: " + mesPublicacion << std::endl;
+}
+
+Revista::~Revista() {
+    std::cout << "xd" << std::endl;
+}

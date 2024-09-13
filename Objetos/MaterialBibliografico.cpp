@@ -1,9 +1,17 @@
 #include <iostream>
-using namespace std;
+#include "MaterialBibliografico.h"
 
-class MaterialBibliografico{
-    public:
-    string nombre, isbn, autor;
-    bool prestado;
-    virtual void mostrarInformacion() {cout << "Nombre: " + nombre + "\nISBN: " + isbn + "\nAutor: " + autor << endl;}
-};
+MaterialBibliografico::MaterialBibliografico(std::string nombre, std::string isbn, std::string autor) {
+    this -> nombre = nombre;
+    this -> isbn = isbn;
+    this -> autor = autor;
+    this -> prestado = false;
+}
+
+void MaterialBibliografico::mostrarInformacion(){
+    std::cout << "Nombre: " + nombre + "\nISBN: " + isbn + "\nAutor: " + autor << std::endl;
+}
+
+MaterialBibliografico::~MaterialBibliografico() {
+    std::cout << "xd" << std::endl;
+}
