@@ -5,10 +5,10 @@
 class Usuario{
     private:
     std::string nombre, id;
-    MaterialBibliografico* materialesPrestados;
+    MaterialBibliografico* materialesPrestados[5];
     public:
-    Usuario();
-    void mostrarMaterial();
-    void devolverMaterial();
+    Usuario(std::string nombre, std::string id);
+    void prestarMaterial(MaterialBibliografico* material);
+    MaterialBibliografico* devolverMaterial(std::string nombre);
     void mostrarMaterialesPrestados();
 };
