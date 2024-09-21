@@ -2,7 +2,7 @@
 #include "Libro.h"
 
 Libro::Libro(std::string nombre, std::string isbn, std::string autor, std::string fechaPublicacion, std::string resumen)
-    : MaterialBibliografico(nombre, autor, fechaPublicacion) {
+    : MaterialBibliografico(nombre, isbn, autor) {
     this -> fechaPublicacion = fechaPublicacion;
     this ->resumen = resumen;
 }
