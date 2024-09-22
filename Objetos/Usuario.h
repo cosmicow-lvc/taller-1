@@ -5,10 +5,15 @@
 class Usuario{
     private:
     std::string nombre, id;
-    MaterialBibliografico* materialesPrestados[5];
+    MaterialBibliografico* materialesPrestados[5]{};
     public:
     Usuario(std::string nombre, std::string id);
     void prestarMaterial(MaterialBibliografico* material);
-    MaterialBibliografico* devolverMaterial(std::string nombre);
+    void devolverMaterial(std::string palabra, std::string criterio);
     void mostrarMaterialesPrestados();
+    //Getters y setters
+    std::string getNombre();
+    void setNombre(std::string nombre);
+    std::string getId();
+    void setId(std::string id);
 };
