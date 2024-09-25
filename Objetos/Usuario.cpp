@@ -23,7 +23,7 @@ void Usuario::prestarMaterial(MaterialBibliografico* material) {
 };
 
 void Usuario::devolverMaterial(std::string palabra, std::string criterio) {
-    if (criterio == "nombre") {
+    if (criterio == "N") {
         for (int i = 0; i < 5; i++) {
             if (materialesPrestados[i] != nullptr) {
                 if (materialesPrestados[i] -> getNombre() == palabra) {
@@ -35,7 +35,7 @@ void Usuario::devolverMaterial(std::string palabra, std::string criterio) {
             }
         }
     }
-    if (criterio == "isbn") {
+    if (criterio == "I") {
         for (int i = 0; i < 5; i++) {
             if (materialesPrestados[i] != nullptr) {
                 if (materialesPrestados[i] -> getIsbn() == palabra) {
