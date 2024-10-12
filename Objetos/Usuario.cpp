@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Usuario.h"
 
 Usuario::Usuario(std::string nombre, std::string id) {

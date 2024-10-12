@@ -1,5 +1,6 @@
 #pragma once
-#include <iostream>
+#ifndef REVISTA_H
+#define REVISTA_H
 #include "MaterialBibliografico.h"
 
 class Revista: public MaterialBibliografico {
@@ -11,3 +12,4 @@ class Revista: public MaterialBibliografico {
     void mostrarInformacion() override;
     ~Revista() override;
 };
+#endif

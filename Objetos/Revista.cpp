@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Revista.h"
 
 Revista::Revista(std::string nombre, std::string isbn, std::string autor, std::string numeroPublicacion, std::string mesPublicacion)

@@ -4,7 +4,26 @@
 #include "Objetos/Usuario.h"
 #include <iostream>
 #include <fstream>
-using namespace std;
+
+void leerMateriales(MaterialBibliografico* materiales[100]) {
+    std::fstream arch("materiales.txt");
+    std::string linea;
+    int cont = 0;
+    while (getline(arch, linea)) {
+        std::string tipo = linea.substr(0, linea.find(';'));
+        if (tipo == "L") {
+            materiales[cont] = new Libro();
+        } else if (tipo == "R") {
+            materiales[cont] = new Revista();
+        }
+        cont++;
+    }
+    arch.close();
+}
+
+void escribirMateriales(MaterialBibliografico* materiales[100]){
+    
+}
 
 void insertarMaterial(MaterialBibliografico* biblioteca[100], MaterialBibliografico* material) {
     if (material == nullptr) {
@@ -13,11 +32,11 @@ void insertarMaterial(MaterialBibliografico* biblioteca[100], MaterialBibliograf
     for (int i = 0; i < 100; i++) {
         if (biblioteca[i] == nullptr) {
             biblioteca[i] = material;
-            cout << "Material agregado correctamente" << endl;
+            std::cout << "Material agregado correctamente" << std::endl;
             return;
         }
     }
-    cout << "No queda espacio en la biblioteca" << endl;
+    std::cout << "No queda espacio en la biblioteca" << std::endl;
 };
 
 MaterialBibliografico* buscarMaterial(std::string palabra, std::string criterio, MaterialBibliografico* biblioteca[100]) {
@@ -56,34 +75,34 @@ Usuario* buscarUsuario(std::string id, Usuario* usuarios[5]) {
 void agregarMaterial(MaterialBibliografico* biblioteca[100]) {
     MaterialBibliografico* aux = nullptr;
     std::string nombre, isbn, autor, tipo;
-    cout << "Nombre: \n>";
-    cin >> nombre;
-    cout << "ISBN: \n>";
-    cin >> isbn;
-    cout << "Autor: \n>";
-    cin >> autor;
-    cout << "Revista (R) o Libro (L)?";
-    cin >> tipo;
+    std::cout << "Nombre: \n>";
+    std::cin >> nombre;
+    std::cout << "ISBN: \n>";
+    std::cin >> isbn;
+    std::cout << "Autor: \n>";
+    std::cin >> autor;
+    std::cout << "Revista (R) o Libro (L)?";
+    std::cin >> tipo;
     if (tipo == "R") {
         std::string nPublicacion, mesPublicacion;
-        cout << "Numero de publicacion: \n>";
-        cin >> nPublicacion;
-        cout << "Mes de publicacion: \n>";
-        cin >> mesPublicacion;
+        std::cout << "Numero de publicacion: \n>";
+        std::cin >> nPublicacion;
+        std::cout << "Mes de publicacion: \n>";
+        std::cin >> mesPublicacion;
         aux = new Revista(nombre, isbn, autor, nPublicacion, mesPublicacion);
     } else if (tipo == "L") {
         std::string fechaPublicacion, resumen;
-        cout << "Fecha de publicacion: \n>";
-        cin >> fechaPublicacion;
-        cout << "Resumen del libro: \n>";
-        cin >> resumen;
+        std::cout << "Fecha de publicacion: \n>";
+        std::cin >> fechaPublicacion;
+        std::cout << "Resumen del libro: \n>";
+        std::cin >> resumen;
         aux = new Libro(nombre, isbn, autor, fechaPublicacion, resumen);
     } else {
-        cout << "Criterio no reconocido" << endl;
+        std::cout << "Criterio no reconocido" << std::endl;
     }
     insertarMaterial(biblioteca, aux);
     if (aux == nullptr) {
-        cout << "No se pudo agregar el material" << endl;
+        std::cout << "No se pudo agregar el material" << std::endl;
     }
 };
 
@@ -97,57 +116,54 @@ void mostrarMateriales(MaterialBibliografico* biblioteca[100]) {
 
 void prestarMaterial(MaterialBibliografico* biblioteca[100], Usuario* usuarios[5]) {
     std::string id;
-    cout << "Ingrese el ID del usuario: \n>";
-    cin >> id;
+    std::cout << "Ingrese el ID del usuario: \n>";
+    std::cin >> id;
     Usuario* user = buscarUsuario(id, usuarios);
     if (user != nullptr) {
         std::string criterio, palabra;
-        cout << "Quiere buscar el material por Titulo (T) o por Autor (A)?";
-        cin >> criterio;
-        cout << "Ingrese la busqueda:";
-        cin >> palabra;
+        std::cout << "Quiere buscar el material por Titulo (T) o por Autor (A)?";
+        std::cin >> criterio;
+        std::cout << "Ingrese la busqueda:";
+        std::cin >> palabra;
         MaterialBibliografico* aux = buscarMaterial(palabra, criterio, biblioteca);
         if (aux != nullptr) {
             user -> prestarMaterial(aux);
         } else {
-            cout << "Material no encontrado" << endl;
+            std::cout << "Material no encontrado" << std::endl;
         }
     } else {
-        cout << "Usuario no encontrado" << endl;
+        std::cout << "Usuario no encontrado" << std::endl;
     }
 }
 
 void devolverMaterial(Usuario* usuarios[5]) {
     std::string id;
-    cout << "Ingrese el ID del usuario: \n>";
-    cin >> id;
+    std::cout << "Ingrese el ID del usuario: \n>";
+    std::cin >> id;
     Usuario* user = buscarUsuario(id, usuarios);
     if (user != nullptr) {
         std::string criterio, palabra;
-        cout << "Quiere buscar por nombre (N) o por ISBN (I):";
-        cin >> criterio;
-        cout << "Ingrese la busqueda";
-        cin >> palabra;
+        std::cout << "Quiere buscar por nombre (N) o por ISBN (I):";
+        std::cin >> criterio;
+        std::cout << "Ingrese la busqueda";
+        std::cin >> palabra;
         user -> devolverMaterial(palabra, criterio);
         return;
     }
-    cout << "No se encontro el usuario" << endl;
+    std::cout << "No se encontro el usuario" << std::endl;
 }
 
 int main() {
     MaterialBibliografico* libreria[100];
-    Libro* papelucho = new Libro("Papelucho", "ASDASDS", "Marta","1-1-24", "pEPDSPDASDPSA");
-    libreria[0] = papelucho;
     Usuario* usuarios[5];
-    Usuario* cabroql = new Usuario("alo", "asd");
-    usuarios[0] = cabroql;
+    leerMateriales(libreria);
     int opcion = -1;
     while (opcion != 0) {
-        cout << "1. Agregar un libro\n2. Mostrar materiales\n3. Prestar material\n4. Devolver material\n5. Agregar usuario\n6. Eliminar usuario\n0. Cerrar el programa" << endl;
-        cout << "Selecciona una opcion\n> ";
-        cin >> opcion;
+        std::cout << "1. Agregar un libro\n2. Mostrar materiales\n3. Prestar material\n4. Devolver material\n5. Agregar usuario\n6. Eliminar usuario\n0. Cerrar el programa" << std::endl;
+        std::cout << "Selecciona una opcion\n> ";
+        std::cin >> opcion;
         switch (opcion) {
-            case 0: cout << "Cerrando programa" << endl;
+            case 0: std::cout << "Cerrando programa" << std::endl;
                 break;
             case 1: agregarMaterial(libreria);
                 break;
@@ -157,11 +173,12 @@ int main() {
                 break;
             case 4: devolverMaterial(usuarios);
                 break;
-            default: cout << "Opcion no reconocida" << endl;
+            default: std::cout << "Opcion no reconocida" << std::endl;
                 break;
 
         }
     }
     
+    escribirMateriales(libreria);
     return 0;
 };

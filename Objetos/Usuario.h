@@ -1,5 +1,6 @@
 #pragma once
-#include <iostream>
+#ifndef USUARIO_H
+#define USUARIO_H
 #include "MaterialBibliografico.h"
 
 class Usuario{
@@ -17,3 +18,4 @@ class Usuario{
     std::string getId();
     void setId(std::string id);
 };
+#endif

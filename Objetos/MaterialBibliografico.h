@@ -1,4 +1,6 @@
 #pragma once
+#ifndef MATERIALBIBLIOGRAFICO_H
+#define MATERIALBIBLIOGRAFICO_H
 #include <iostream>
 
 class MaterialBibliografico {
@@ -20,3 +22,4 @@ public:
     bool getPrestado();
     void setPrestado(bool prestado);
 };
+#endif
