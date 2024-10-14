@@ -2,6 +2,11 @@ EQUIPO:
 Maximo Jofre Letelier; 21675371-2; maximo.jofre@alumnos.ucn.cl; C-2
 Antonio Tabilo Cortes; 21668377-3; antonio.tabilo@alumnos.ucn.cl; C-2 
 
+PARA COMPILAR:
+g++ Objetos/MaterialBibliografico.cpp Objetos/Libro.cpp Objetos/Revista.cpp Objetos/Usuario.cpp Main.cpp -o Main.exe
+PARA EJECUTAR:
+.\Main.exe
+
 Objetos:
 
 MaterialBibliografico:
