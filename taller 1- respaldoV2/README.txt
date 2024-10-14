@@ -19,6 +19,8 @@ MaterialBibliografico:
     Destructor
     Getters y Setters
     void virtual mostrarInformacion(): Método que muestra por pantalla los atributos del objeto.
+    virtual void guardarEstado(std::fstream &arch)
+    virtual void cargarEstado(std::fstream &arch)
 
 Libro (hereda de MaterialBibliografico):
 
@@ -36,6 +38,8 @@ Libro (hereda de MaterialBibliografico):
     Destructor
     Getters y Setters
     void mostrarInformacion() overrride
+    void guardarEstado(std::fstream &arch) override
+    void cargarEstado(std::fstream &arch) override
 
 Revista (hereda de MaterialBibliografico):
 
@@ -53,6 +57,8 @@ Revista (hereda de MaterialBibliografico):
     Destructor
     Getters y Setters
     void mostrarInformacion() overrride
+    void guardarEstado(std::fstream &arch) override
+    void cargarEstado(std::fstream &arch) override
 
 Usuario:
 
@@ -67,6 +73,8 @@ Usuario:
     Destructor
     Getters y Setters
     void prestarMaterial(MaterialBibliografico* material)
+    static Usuario* cargarLinea(const std::string linea)
+    void guardarEstado(std::fstream &arch);
     void devolverMaterial(String palabra, String criterio)
     void mostrarMaterialesPrestados()
     void mostrarInformacionUsuario()
